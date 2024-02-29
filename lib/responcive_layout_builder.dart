@@ -34,3 +34,32 @@ class ResponsiveLayoutBuilder extends StatelessWidget {
   //         const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
   //       ],
   //     ),
+
+
+
+//   import 'package:flutter/material.dart';
+// import 'package:responsive_framework/responsive_framework.dart';
+
+// class ResponsiveLayoutBuilder extends StatelessWidget {
+//   final Widget child;
+//   final List<Breakpoint> breakpoints;
+//   final Widget Function(BuildContext context, Breakpoint breakpoint) builder;
+
+//   const ResponsiveLayoutBuilder({
+//     required this.child,
+//     required this.breakpoints,
+//     required this.builder,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return LayoutBuilder(
+//       builder: (context, constraints) {
+//         final breakpoint = ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+//             ? breakpoints.firstWhere((bp) => constraints.maxWidth <= bp.end)
+//             : breakpoints.last;
+//         return builder(context, breakpoint);
+//       },
+//     );
+//   }
+// }
