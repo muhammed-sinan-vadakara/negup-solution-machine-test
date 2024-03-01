@@ -24,8 +24,8 @@ void main() {
 
 
 // //before run the application please follow the things
-// //    1) Go to the terminal of the application.
-// //    2) Run this(by take copy or type the terminal) = flutter pub run build_runner build
+// //    1) Go to the terminal of the application by Vs Code.
+// //    2) PLease copy paste the code = flutter pub run build_runner build
 
 class MyApp extends ConsumerWidget {
   static final scaffoldMessangerKey = GlobalKey<ScaffoldMessengerState>();
