@@ -1,41 +1,43 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:test_app/breackpoints.dart';
-import 'package:test_app/feacture/home_page/presentation/page/mobile_home_page.dart';
-import 'package:test_app/responcive_layout_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/core/constants/home_page_constants.dart';
+import 'package:test_app/feacture/splash_screen/presentation/page/splash_screen.dart';
 
 void main() {
-  runApp(const TestApp());
+  AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+        channelKey: 'location-update',
+        channelName: "Location Update",
+        channelDescription: "Notifications of Loacation update status",
+      ),
+    ],
+  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-//This project is follow by clean Architecture .
-//there was many folder and files are present in clean architecture but this project no need that blank folders that i will removed
-//Riverpod code generator is used .
+// //This project is follow by clean Architecture .
+// //there was many folder and files are present in clean architecture but this project no need that blank folders that i will removed
+// //Riverpod code generator is used .
 
-//before run the application please follow the things
-//    1) Go to the terminal of the application.
-//    2) Run this(by take copy or type the terminal) = flutter pub run build_runner build 
-class TestApp extends StatelessWidget {
-  const TestApp({super.key});
+// //before run the application please follow the things
+// //    1) Go to the terminal of the application.
+// //    2) Run this(by take copy or type the terminal) = flutter pub run build_runner build
+
+class MyApp extends ConsumerWidget {
+  static final scaffoldMessangerKey = GlobalKey<ScaffoldMessengerState>();
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(homePageConstantsProvider);
     return MaterialApp(
-      title: 'TEST APP',
-      home: ResponsiveLayoutBuilder(
-        child: const HomePage(),
-        breakpoints: breakpoints,
-        builder: (context, breakpoint) {
-          if (breakpoint.name == 'Mobile') {
-            return const HomePage();
-          } else if (breakpoint.name == 'Tablet') {
-            return const HomePage();
-          } else if (breakpoint.name == 'Desktop') {
-            return const HomePage();
-          } else {
-            return const HomePage(); // For large screens
-          }
-        },
-      ),
-    );
+        title: constants.txttitle,
+        scaffoldMessengerKey: scaffoldMessangerKey,
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen());
+    //
   }
 }
