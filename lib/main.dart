@@ -22,6 +22,7 @@ void main() {
 // //there was many folder and files are present in clean architecture but this project no need that blank folders that i will removed
 // //Riverpod code generator is used .
 
+
 // //before run the application please follow the things
 // //    1) Go to the terminal of the application.
 // //    2) Run this(by take copy or type the terminal) = flutter pub run build_runner build
@@ -38,6 +39,5 @@ class MyApp extends ConsumerWidget {
         scaffoldMessengerKey: scaffoldMessangerKey,
         debugShowCheckedModeBanner: false,
         home: const SplashScreen());
-    //
   }
 }

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/core/constants/home_page_constants.dart';
 import 'package:test_app/feacture/home_page/domain/controller/button_controller.dart';
-import 'package:test_app/feacture/home_page/presentation/provider/provider.dart';
+import 'package:test_app/feacture/home_page/presentation/widgets/grid_view_widget.dart';
 
 class ResponsivePage extends ConsumerWidget {
   const ResponsivePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(homePageConstantsProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF333333),
-        title: const Padding(
-          padding: EdgeInsets.only(left: 10),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 10),
           child: Text(
-            'Test App',
-            style: TextStyle(
+            constants.txttitle,
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
@@ -72,61 +74,7 @@ class ResponsivePage extends ConsumerWidget {
                 },
               ),
             ),
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: 50,
-                  crossAxisSpacing: 24,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: ref.watch(homeProvider).locations.length,
-                itemBuilder: (context, index) {
-                  final data = ref.watch(homeProvider).locations[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 12),
-                    child: Container(
-                      height: 70,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color(0xFFf2f2f2),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Request ${index + 1}",
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Lat :${data.latitude.toString()}",
-                              ),
-                              Text(
-                                "Lng :${data.longitude.toString()}",
-                              ),
-                              Text(
-                                "Speed : ${data.speed.toString()}",
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            )
+            GridViewWidget()
           ],
         ),
       ),

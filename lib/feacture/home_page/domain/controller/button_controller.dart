@@ -17,13 +17,14 @@ Future<bool> requestLocationPermission() async {
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      messageToShow = 'Location permission denied';
+      messageToShow = 'Location permission denied , Please Enable the location';
       isPermissionGranted = false;
     } else {
-      messageToShow = 'Location permission granted';
+      messageToShow = 'Location permission granted , Thank you';
     }
   } else {
-    messageToShow = 'Location permission already granted';
+    messageToShow =
+        'Location permission already granted,You can continue the work';
   }
 
   if (permission == LocationPermission.deniedForever) {
@@ -45,9 +46,7 @@ List<ButtonModel> buttonList = [
     buttonName: 'Request Location Permission',
     buttonColor: const Color(0xFF2f80ed),
     onTap: (ref, context) async {
-      /// Check if location service is enabled
       if (await isLocationEnabled()) {
-        /// Check if the app has permission
         if (await requestLocationPermission()) {
           print('Location permission granted');
         } else {
@@ -71,7 +70,6 @@ List<ButtonModel> buttonList = [
     buttonColor: const Color(0xFF27ae60),
     onTap: (ref, context) async {
       if (await requestLocationPermission()) {
-        /// Check if the app has permission
         showDialog(
           context: context,
           builder: ((context) {
