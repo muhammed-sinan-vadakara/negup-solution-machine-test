@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/core/constants/home_page_constants.dart';
 import 'package:test_app/feacture/home_page/domain/controller/button_controller.dart';
-import 'package:test_app/feacture/home_page/presentation/provider/provider.dart';
 import 'package:test_app/feacture/home_page/presentation/widgets/listview_widget.dart';
 
 class HomePage extends ConsumerWidget {
@@ -15,10 +14,10 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF333333),
         title: Padding(
-          padding: EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(left: 10),
           child: Text(
             constants.txttitle,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
@@ -69,7 +68,7 @@ class HomePage extends ConsumerWidget {
                 },
               ),
             ),
-            ListViewWidget()
+            const ListViewWidget()
           ],
         ),
       ),
